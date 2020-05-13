@@ -7,7 +7,6 @@ const initialState = {
 const AuthenticationReducer=(state = initialState, action)=>{
     switch(action.type){
         case SET_AUTHENTICATION:
-            console.log(action);
             return {
                 isLoggedIn : action.payload
             };

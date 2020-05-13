@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import registerServiceWorker from './registerServiceWorker';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
@@ -25,5 +24,4 @@ ReactDOM.render(
     </Provider>,
     document.querySelector("#root")
 );
-//registerServiceWorker();
 serviceWorker.unregister();
