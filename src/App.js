@@ -3,6 +3,7 @@ import Header from "./containers/header";
 import { Route, Switch } from 'react-router';
 import Home from './components/home';
 import Resources from './components/resources';
+import RequireAuthentication from './helpers/require-authentication';
 
 require("./App.css");
 
@@ -12,7 +13,7 @@ export default class App extends Component {
       <Header/>
       <Switch>
         <Route exact path="/" component={Home}/>
-        <Route exact path="/resources" component={Resources}/>
+        <Route exact path="/resources" component={RequireAuthentication(Resources)}/>
       </Switch>
     </>);
   };
