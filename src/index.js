@@ -8,8 +8,9 @@ import App from "./App";
 import reducers from "./reducers";
 import {BrowserRouter} from "react-router-dom";
 import {actionCounterMiddleware} from "./middlewares/actionCountMiddleware";
+const invariant = require("redux-immutable-state-invariant").default();
 
-const createStoreWithMiddleware = applyMiddleware(thunk, actionCounterMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(invariant, thunk, actionCounterMiddleware)(createStore);
 
 ReactDOM.render(
     <Provider
