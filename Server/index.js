@@ -8,10 +8,19 @@ const mongoose = require("mongoose");
 //const mongodb = require('./mongoDB');
 
 //Connexion à la base de donnée mongoDB
-mongoose.connect("mongodb+srv://u_root:u_toor@cluster0-xetmj.mongodb.net/test?retryWrites=true&w=majority/db_redux");
+const db_name="db_redux";
+const mongoUrl ="mongodb+srv://u_root:u_toor@cluster0-xetmj.mongodb.net?retryWrites=true&w=majority";
+const options = { 
+    dbName:"db_redux",
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+}
+
+mongoose.connect(mongoUrl,options);
 mongoose.connection
-    .once('open',()=>console.log("Connected to mongoDB database..."))
-    .on('error', error => console.log("Error connexion to mongoDB...", error));
+    .once('open',()=>console.log('Connection to Mongo established...'))
+    .on('error', error => console.log("Error connexion to mongoDB...", error))
+;
 
 
 //On instantie le serveur express
@@ -19,7 +28,7 @@ const expressServer = express();
 
 //On demande au serveur d'utiliser les modules importer
 expressServer.use(morgan("combined"));
-expressServer.use(bodyParser.json({type:'*/'}));
+expressServer.use(bodyParser.json({type:'*/*'}));
 
 //Declaration des port
 const port = 3090;

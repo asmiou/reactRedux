@@ -1,23 +1,38 @@
-//const {MongoClient} = require('mongodb');
+const mongoose = require('mongoose')
+mongoose.Promise = global.Promise
 
-const uri = "mongodb+srv://u_root:u_toor@cluster0-xetmj.mongodb.net/test?retryWrites=true&w=majority";
-var MongoClient = require('mongodb').MongoClient;
+async function myDbConnection() {
 
-module.exports = function(){
-    MongoClient.connect(uri, function(err, db) {
-        if (err) {
-          console.log(err);
-        }
-        
-        db.collection('user').find().toArray(function(err, result) {
-          if (err) {
-            console.log(err);
-          }
-          console.log(result);
-        });
-      });
+    const url = "mongodb+srv://u_root:u_toor@cluster0-xetmj.mongodb.net?retryWrites=true&w=majority";
+    const options = { 
+        dbName:"db_redux",
+        useNewUrlParser: true,
+        useUnifiedTopology: true 
+    }
+
+    try {
+        let connectionPromise = await mongoose.connect(url, options);
+        if (mongoose.connection) {
+            /*
+            mongoose.connection.on('connected', function() { // Hack the database back to the right one, because when using mongodb+srv as protocol. 
+                if (mongoose.connection.client.s.url.startsWith('mongodb+srv')) { 
+                    mongoose.connection.db = mongoose.connection.client.db('db_redux');
+                    console.log(`MongoDB database ${db_name} selected...`) 
+                } 
+                console.log('Connection to Mongo established...'); 
+            });*/
+            console.log('MongoDb connected cuccessfully . . .')
+            global.connectionPromise = connectionPromise;
+            
+        } else { global.connectionPromise = null; 
+                 console.log('not connected to DB') }
+        return connectionPromise;
+    } catch (error) {
+        console.log('Error connecting to DB ::', error);
+    }
 }
 
+module.exports = myDbConnection();
     
 
 
