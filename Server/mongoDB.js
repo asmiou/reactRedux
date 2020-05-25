@@ -13,14 +13,6 @@ async function myDbConnection() {
     try {
         let connectionPromise = await mongoose.connect(url, options);
         if (mongoose.connection) {
-            /*
-            mongoose.connection.on('connected', function() { // Hack the database back to the right one, because when using mongodb+srv as protocol. 
-                if (mongoose.connection.client.s.url.startsWith('mongodb+srv')) { 
-                    mongoose.connection.db = mongoose.connection.client.db('db_redux');
-                    console.log(`MongoDB database ${db_name} selected...`) 
-                } 
-                console.log('Connection to Mongo established...'); 
-            });*/
             console.log('MongoDb connected cuccessfully . . .')
             global.connectionPromise = connectionPromise;
             
@@ -33,35 +25,3 @@ async function myDbConnection() {
 }
 
 module.exports = myDbConnection();
-    
-
-
-/*
-module.exports = async function main(){
-    
- 
-
-    const client = new MongoClient(uri);
- 
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
- 
-        // Make the appropriate DB calls
-        await  listDatabases(client);
- 
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
-}
-
-async function listDatabases(client){
-    let databasesList = await client.db().admin().listDatabases();
- 
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
-
-*/
