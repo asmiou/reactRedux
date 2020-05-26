@@ -22,6 +22,14 @@ userSchema.pre('save',function(next){
     });
 });
 
+//Vérification du mot de passe
+userSchema.methods.isPasswordEqualTo = function(password, done){
+    bcrypt.compare(password, this.password, (err, isMatch)=>{
+        if(err) return done(err);
+        done(null, isMatch);
+    });
+};
+
 //On va nommer la collection dans la base de données et l'associer au schema
 const User = mongoose.model('user', userSchema);
 module.exports = User;

@@ -1,7 +1,10 @@
 const loadash = require('lodash');
 const User = require('../models/user');
-const tokenorize = require("../services/jwtService")
+const tokenorize = require("../services/jwtService");
 
+/**
+ * Register
+ */
 exports.signup = function(req, res, next){
     const email = req.body.email;
     const password = req.body.password;
@@ -34,3 +37,22 @@ exports.signup = function(req, res, next){
         res.status(201).json({token: tokenorize(user)});
     })
 };
+
+/**
+ * Login
+ */
+exports.login = function(req, res, next){
+    return res.status(200).send({token: tokenorize(req.user)})
+}
+
+/**
+ * List User
+ */
+exports.listUser = function(req, res, next){
+    User.find({}, (err, result)=>{
+        if(err){
+            return next(err);
+        }
+        res.status(201).json({users: result});
+    });
+}
