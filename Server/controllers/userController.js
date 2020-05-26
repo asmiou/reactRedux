@@ -1,5 +1,6 @@
 const loadash = require('lodash');
 const User = require('../models/user');
+const tokenorize = require("../services/jwtService")
 
 exports.signup = function(req, res, next){
     const email = req.body.email;
@@ -30,6 +31,6 @@ exports.signup = function(req, res, next){
         if(err){
             return next(err);
         }
-        res.status(201).json(user);
+        res.status(201).json({token: tokenorize(user)});
     })
 };

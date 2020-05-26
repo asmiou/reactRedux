@@ -1,4 +1,4 @@
-const userController = require("./controllers/userController");
+const userController = require("../controllers/userController");
 
 module.exports = function (expresServer){
     expresServer.get("/", function(req, res, next){

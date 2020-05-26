@@ -1,11 +1,13 @@
 const mongoose = require('mongoose')
+const config = require('../config');
+
 mongoose.Promise = global.Promise
 
 async function myDbConnection() {
 
-    const url = "mongodb+srv://u_root:u_toor@cluster0-xetmj.mongodb.net?retryWrites=true&w=majority";
+    const url = config.db_uri;
     const options = { 
-        dbName:"db_redux",
+        dbName:config.db_name,
         useNewUrlParser: true,
         useUnifiedTopology: true 
     }
