@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const http = require("http");
 const router = require('./services/routes');
-require('./services/mongoDB');
-const config = require('./config');
+require('./services/mongoDBService');
+const config = require('../config');
 
 //On instantie le serveur express
 const expressServer = express();

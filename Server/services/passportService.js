@@ -1,6 +1,6 @@
 const passport = require('passport');
 const User = require('../models/user');
-const config = require ('../config');
+const config = require ('../../config');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStrategy = require('passport-local')
@@ -12,7 +12,7 @@ const jwtOptions ={
 };
 
 //On déclare la stratégie de connexion
-const strategyLogin = new JwtStrategy(jwtOptions, (payload, done)=>{
+const strategyDecodeToken = new JwtStrategy(jwtOptions, (payload, done)=>{
     const email = payload.sub;
     User.findOne({email}, function(err, result){
         if(err){ // si erreur on retourne erreur
@@ -45,5 +45,5 @@ const localLoginStratey = new LocalStrategy(credentialOptions, (email, password,
 });
 
 //On demande à passport d'utiliser la stratégie.
-passport.use(strategyLogin);
+passport.use(strategyDecodeToken);
 passport.use(localLoginStratey);

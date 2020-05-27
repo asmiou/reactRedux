@@ -53,6 +53,6 @@ exports.listUser = function(req, res, next){
         if(err){
             return next(err);
         }
-        res.status(201).json({users: result});
+        res.status(200).json({users: result});
     });
 }
