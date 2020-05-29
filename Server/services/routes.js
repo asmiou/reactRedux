@@ -13,7 +13,7 @@ module.exports = function (expresServer){
                 message: "express server started on port 3090..."
             })
     });
-    expresServer.post("/signup", userController.signup);
+    expresServer.post("/register", userController.signup);
     expresServer.post("/login", validCredentials, userController.login);
     expresServer.get("/users", protectedRoute, userController.listUser);
 

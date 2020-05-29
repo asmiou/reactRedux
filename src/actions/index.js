@@ -43,3 +43,18 @@ export function logout(){
 
     }
 }
+
+export function register({email, password}, history){
+    return function(dispatch){
+        axios.post(`${base_url}/register`, {
+            email,
+            password
+        }).then((response)=>{
+            localStorage.setItem('token', response.data.token);
+            dispatch(setAuthentication(true));
+            history.push('/resources')
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
+}

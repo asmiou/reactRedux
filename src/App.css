@@ -1,3 +1,7 @@
+body{
+  margin-top: 5%;
+}
+
 .nav a{
   color: #f2f2f2;
   text-decoration:none;
@@ -8,3 +12,9 @@
  text-decoration: none;
  border-bottom: 3px solid #f2f2f2;
 }
+
+.error{
+  color: red;
+  font-size: small;
+}
+

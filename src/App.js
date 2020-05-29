@@ -8,6 +8,7 @@ import TodoApp from './components/todo-app';
 import Selectors from './containers/selectors';
 import LoginForm from './containers/login';
 import Logout from './containers/logout';
+import Register from './containers/register';
 
 require("./App.css");
 
@@ -19,6 +20,7 @@ export default class App extends Component {
         <Route exact path="/" component={Home}/>
         <Route exact path="/login" component={LoginForm}/>
         <Route exact path="/logout" component={Logout}/>
+        <Route exact path="/register" component={Register}/>
         <Route exact path="/todo" component={TodoApp}/>
         <Route exact path="/selector" component={Selectors}/>
         <Route exact path="/resources" component={RequireAuthentication(Resources)}/>
