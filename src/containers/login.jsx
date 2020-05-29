@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 const FIELDS ={ email :"email", password:"password"};
 
 class Login extends Component{
-    handleSubmit = ()=>{
 
+    handleSubmit = (credentials)=>{
+        this.props.login(credentials, this.props.history)
     }
 
     render(){
@@ -22,18 +23,18 @@ class Login extends Component{
                     </div>
                     <div className="row justify-content-md-center">
                         <fieldset className="col-md-4 form-group">
-                            <label htmlFor="" className="bmd-label-floatin">Email</label>
+                            <label className="bmd-label-floating">Email</label>
                             <Field name={FIELDS.email} type="text" className="form-control" component="input"/>
                         </fieldset>
                     </div>
                     <div className="row justify-content-md-center">
                         <fieldset className="col-md-4 form-group">
-                            <label htmlFor="" className="bmd-label-floatin">Password</label>
+                            <label className="bmd-label-floating">Password</label>
                             <Field name={FIELDS.password} type="password" className="form-control" component="input"/>
                         </fieldset>
                     </div>
                     <div className="row justify-content-md-center">
-                        <button className="btn btn-primary btn-raise">Login</button>
+                        <button className="btn btn-primary btn-raised">Login</button>
                     </div>
                 </form>
             </div>

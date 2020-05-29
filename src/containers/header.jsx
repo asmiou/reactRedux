@@ -5,10 +5,6 @@ import {Link} from "react-router-dom";
 
 class Header extends Component {
 
-    onClickAuthentication=()=>{
-        this.props.setAuthentication(!this.props.isLoggedIn);
-    };
-
     displayAuthLabel =()=>{
         if(this.props.isLoggedIn){
             return "Deconnexion"; 
@@ -17,9 +13,35 @@ class Header extends Component {
         } 
     };
 
+    displayAuthLink = ()=>{
+        if(this.props.isLoggedIn){
+            return (
+                <li className="nav-item"> 
+                    <Link to="/login"  className="nav-link" >
+                        {this.displayAuthLabel()}
+                    </Link>
+                </li>)
+        }else{
+            return (
+                [
+                <li key="1" className="nav-item"> 
+                    <Link to="/login"  className="nav-link" >
+                        {this.displayAuthLabel()}
+                    </Link>
+                </li>,
+                <li key="2" className="nav-item"> 
+                    <Link to="/register"  className="nav-link" >
+                        Inscription
+                    </Link>
+                </li>
+                ]
+            )
+        }
+    }
+
     render() {
         return (
-            <div>
+            <div className="mr-0">
                 <ul className="nav nav-tab bg-primary">
                     <li className="nav-item">
                         <Link to="/" className="nav-link">Accueil</Link>
@@ -33,11 +55,7 @@ class Header extends Component {
                     <li className="nav-item"> 
                         <Link to="/selector"  className="nav-link">Selector</Link>
                     </li>
-                    <li className="nav-item"> 
-                        <a href="#"  className="nav-link" onClick={this.onClickAuthentication}>
-                            {this.displayAuthLabel()}
-                        </a>
-                    </li>
+                    {this.displayAuthLink()}
                 </ul>
             </div>
         );
