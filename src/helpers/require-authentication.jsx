@@ -24,7 +24,7 @@ export default (ChildComponent)=>{
         }
 
         render() {
-            return <ChildComponent/>
+            return this.props.isLoggedIn && <ChildComponent/>
         }
     }
 

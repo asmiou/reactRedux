@@ -47,7 +47,7 @@ class Header extends Component {
                         <Link to="/" className="nav-link">Accueil</Link>
                     </li>
                     <li className="nav-item"> 
-                        <Link to="/resources"  className="nav-link">Ressources</Link>
+                        <Link to="/resources"  className="nav-link">Users</Link>
                     </li>
                     <li className="nav-item"> 
                         <Link to="/todo"  className="nav-link">Todo</Link>
@@ -70,3 +70,5 @@ const mapStateToProps = (state) =>{
 
 
 export default connect(mapStateToProps,actions)(Header);
+
+

@@ -9,6 +9,7 @@ import Selectors from './containers/selectors';
 import LoginForm from './containers/login';
 import Logout from './containers/logout';
 import Register from './containers/register';
+import Errors from "./containers/errors"
 
 require("./App.css");
 
@@ -16,6 +17,7 @@ export default class App extends Component {
   render() {
     return (<>
       <Header/>
+      <Errors/>
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/login" component={LoginForm}/>

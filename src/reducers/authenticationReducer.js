@@ -1,7 +1,7 @@
 import {SET_AUTHENTICATION} from "../actions/actions-types";
 
 const initialState = {
-    isLoggedIn: false
+    isLoggedIn: (false)
 }
 
 const AuthenticationReducer=(state = initialState, action)=>{

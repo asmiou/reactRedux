@@ -24,7 +24,7 @@ class Register extends Component{
     };
 
     render(){
-        const {submitting} = this.props;
+        const {handleSubmit, fields} = this.props;
         return(
             <div className="container pt-5">
                 <div className="row justify-content-md-center">
@@ -32,7 +32,7 @@ class Register extends Component{
                         Inscription
                     </h1>
                 </div>
-                <form onSubmit={this.props.handleSubmit(this.handleSubmit)}>
+                <form onSubmit={handleSubmit(this.handleSubmit)}>
                     <Field
                         name={FIELDS.email}
                         component={this.renderInputComponent}
@@ -54,10 +54,11 @@ class Register extends Component{
                         label="Confirm password"
                         validate={validations.required}
                     />
+                    <div className="row justify-content-md-center">
+                        <button type="submit" className="btn btn-primary btn-raised" >Incription</button>
+                    </div>
                 </form>
-                <div className="row justify-content-md-center">
-                    <button type="submit" className="btn btn-primary btn-raised" >Incription</button>
-                </div>
+                
             </div>
         );
     }

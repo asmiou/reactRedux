@@ -1,4 +1,12 @@
-import {SET_AUTHENTICATION, INCREMENT_ACTION_COUNT, INCREMENT_NUMBER} from "./actions-types";
+import {
+    SET_AUTHENTICATION, 
+    INCREMENT_ACTION_COUNT, 
+    INCREMENT_NUMBER, 
+    LIST_USERS,
+    PARSE_ERROR,
+    RESET_ERROR
+} 
+    from "./actions-types";
 import axios from "axios";
 const base_url = "http://localhost:3090";
 
@@ -31,7 +39,7 @@ export function login({email, password}, history){
             dispatch(setAuthentication(true));
             history.push('/resources')
         }).catch((error)=>{
-            console.log(error);
+            dispatch(parseError("Error: Bad crudential")) //On dispache l'erreur
         })
     }
 }
@@ -56,5 +64,35 @@ export function register({email, password}, history){
         }).catch((error)=>{
             console.log(error);
         })
+    }
+}
+
+export function listUsers(){
+    return function(dispatch){
+        axios.get(`${base_url}/users`, {
+            headers: { authorization: localStorage.getItem('token')}
+        })
+        .then(response=>{
+            dispatch(
+                {
+                    type: LIST_USERS,
+                    payload: response.data.users
+                })
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
+}
+
+export function parseError(error){
+    return {
+        type: PARSE_ERROR,
+        payload: error
+    }
+}
+
+export function resetError(){
+    return {
+        type: RESET_ERROR
     }
 }
